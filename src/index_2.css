@@ -1,0 +1,134 @@
+:root {
+    /* fonts */
+    --font-main: "Inter", system-ui, sans-serif;
+
+    /* colours */
+    --color-primary: #3d3d3d;
+    --color-secondary: #4fa3c8;
+    --color-tertiary: #50cc2b;
+
+    --color-background: #3d3d3d;
+    --color-surface: #4b4b4b;
+    --color-border: #a9a9a9;
+
+    --color-text: #ffffff;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-main);
+    background: var(--color-background);
+    color: var(--color-text);
+
+}
+
+/* full page styles */
+
+.full-page {
+    display: flex;
+    gap: 0px;
+    flex-direction: column;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+.full-page * {
+    border-radius: 0px;
+}
+
+/* sidebar and main section styles */
+
+.middle-page {
+    flex: 1;
+
+    display: flex;
+    gap: 0px;
+    height: 100%;
+
+    /* invisible for now 
+    border-bottom: 1px solid var(--color-border); 
+    border-left: 1px solid var(--color-border); 
+    border-right: 1px solid var(--color-border); 
+    */
+    
+}
+
+.main-section {
+
+    flex: 3.5;
+    padding: 8px;
+    width: 100%;
+    background: var(--color-surface);
+    display: flex;
+}
+
+.dashboard-content {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    gap: 14px;
+    flex-direction: column;
+    /* border: 3px solid var(--color-border); */
+}
+
+.dashboard-content * {
+    border-radius: 10px;
+}
+
+.welcome {
+    flex: 1;
+    border: 0px solid var(--color-border);
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upcoming-workouts {
+    flex: 7;
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    padding: 8px;
+}
+
+.recent-workouts {
+    flex: 7;
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    padding: 8px;
+}
+
+.sidebar {
+
+    flex: 1;
+    max-width: 175px;
+    padding: 6px;
+    border-right: 1px solid var(--color-border);
+}
+
+.header-section {
+    height: 50px;
+    border-bottom: 1px solid var(--color-border);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-section {
+    height: 50px;
+    border: 1px solid var(--color-secondary);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    font-size: clamp(24px, 50cqb, 28px);
+}
+
+h3 {
+    font-size: 1.13em;
+}
