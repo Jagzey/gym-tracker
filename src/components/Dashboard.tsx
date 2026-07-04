@@ -3,7 +3,7 @@ const UpcomingWorkouts = () => {
         <div className="upcoming-workouts">
             <section>
                 <h3>Upcoming Workouts</h3>
-                /* Workout Name | Date | Exercises */
+                <p className="card-text">/* Workout Name | Date | Exercises */</p>
             </section>
         </div>
     )
@@ -14,7 +14,7 @@ const RecentWorkouts = () => {
         <div className="recent-workouts">
             <section>
                 <h3>Recent Workouts</h3>
-                /* Workout Name | Date Completed | Best Weight */
+                <p className="card-text">/* Workout Name | Date Completed | Best Weight */</p>
             </section>
         </div>
     )
