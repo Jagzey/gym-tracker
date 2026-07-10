@@ -16,3 +16,15 @@ Update 1:
 - Borders look less 'harsh'
 - Stylised sidebar, added icons to links, so it looks clean and modern
 - Added React Router to project so sidebar actually routes 'main-section' to correct components
+
+9th July 2026:
+- Updated 'profile' and 'workouts' components to properly contain CSS
+
+10th July 2026:
+- Update profile-card css to look more sleek and modern
+- Updated sidebar css, so that hovering makes the text colour bolder
+- Added a 'Create Workout' button to workouts page
+- Added CSS to 'Create Workout' button
+- Added tables to cards in 'Dashboard' page, and stylised it appropriately
+- Moved profile data into 'profileData.ts' and the profile card loads data from 'exampleUser' in this file
+- Created 'workoutData.ts'

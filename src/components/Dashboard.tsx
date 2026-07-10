@@ -1,9 +1,46 @@
 const UpcomingWorkouts = () => {
     return (
-        <div className="upcoming-workouts">
+        <div className="generic-card upcoming-workouts-card">
             <section>
                 <h3>Upcoming Workouts</h3>
-                <p className="card-text">/* Workout Name | Date | Exercises */</p>
+
+                <div className="table-scroll">
+                    <table className="generic-table">
+                        <thead>
+                            <tr>
+                                <th>NAME</th>
+                                <th>DATE</th>
+                                <th>EXERCISES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Push</td>
+                                <td>N/A</td>
+                                <td>5</td>
+                            </tr>
+
+                            <tr>
+                                <td>Pull</td>
+                                <td>N/A</td>
+                                <td>4</td>
+                            </tr>
+
+                            <tr>
+                                <td>Push</td>
+                                <td>N/A</td>
+                                <td>5</td>
+                            </tr>
+
+                            <tr>
+                                <td>Pull</td>
+                                <td>N/A</td>
+                                <td>4</td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                </div>
             </section>
         </div>
     )
@@ -11,26 +48,52 @@ const UpcomingWorkouts = () => {
 
 const RecentWorkouts = () => {
     return (
-        <div className="recent-workouts">
+        <div className="generic-card recent-workouts-card">
             <section>
                 <h3>Recent Workouts</h3>
-                <p className="card-text">/* Workout Name | Date Completed | Best Weight */</p>
+
+                <div className="table-scroll">
+                    <table className="generic-table">
+                        <thead>
+                            <tr>
+                                <th>NAME</th>
+                                <th>DATE COMPLETED</th>
+                                <th>EXERCISES</th>
+                                <th>BEST WEIGHT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Push</td>
+                                <td>N/A</td>
+                                <td>5</td>
+                                <td>110 kg</td>
+                            </tr>
+
+                            <tr>
+                                <td>Pull</td>
+                                <td>N/A</td>
+                                <td>4</td>
+                                <td>65kg</td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                </div>
+                
             </section>
         </div>
+        
     )
-};
-
-function Welcome() {
-  return (
-    <span className="welcome"><strong>Welcome back, Bradley!</strong></span>
-  )
 };
 
 const Dashboard = () => {
     return (
         <div className="main-section">
             <main className="dashboard-content">
-                <Welcome />
+                <div className="dashboard-header">
+                    <h3>Welcome back, Bradley!</h3>
+                </div>
                 <UpcomingWorkouts />
                 <RecentWorkouts />
             </main>

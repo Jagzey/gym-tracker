@@ -4,14 +4,17 @@
 
 
     /* background colours */
+    --bg-shadow: hsl(0, 0%, 2%);
     --bg-dark: hsl(0, 0%, 14%);
     --bg-regular: hsl(0, 0%, 24%);
     --bg-light: hsl(0, 0%, 34%);
     --bg-border: hsl(0, 0%, 44%);
 
     /* primary colours */
+    --primary-vdark: hsl(195, 50%, 10%);
     --primary-dark: hsl(195, 50%, 35%);
     --primary-regular: hsl(195, 50%, 55%);
+    --primary-x: hsl(195, 50%, 65%);
     --primary-light: hsl(195, 50%, 75%);
     --primary-bg: hsl(195, 50%, 75%, 0.4);
 
@@ -21,10 +24,12 @@
     --accent-light: hsl(105, 65%, 75%);
 
     /* text colours */
+    --text-light: hsl(0, 0%, 97%);
     --text-regular: hsl(0, 0%, 85%);
     --text-dark: hsl(0, 0%, 70%);
 }
 
+/* general application styling */
 body {
     margin: 0;
     font-family: var(--font-main);
@@ -33,8 +38,7 @@ body {
 
 }
 
-/* full page styles */
-
+/* full page application styles */
 .full-page {
     display: flex;
     gap: 0px;
@@ -42,13 +46,51 @@ body {
     min-height: 100vh;
     min-width: 100vw;
 }
-
 .full-page * {
     border-radius: 0px;
 }
 
-/* sidebar and main section styles */
+/* general card styling */
+.generic-card {
+    background: var(--bg-regular);
+    border: 1px solid var(--bg-border);
+    padding: 8px;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px var(--bg-shadow);
+}
+p.card-text {
+    color: var(--text-dark);
+    font-size: 0.85em;
+}
+.generic-card .generic-table th, td {
+    text-align: center;
+}
+.generic-card .generic-table tbody td {
+    padding: 12px 20px 12px 10px;
+}
+.generic-card .generic-table thead th {
+    color: var(--text-dark);
+    font-size: 0.75em;
+    padding: 5px 20px 5px 10px;
+}
+.generic-card .generic-table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+}
+.generic-card .generic-table tbody tr {
+    border-top: 1px solid var(--bg-border);
+}
+.generic-card .generic-table tbody tr:hover {
+    background: var(--bg-light);
+}
+.table-scroll {
+    max-height: 220px;
+    overflow-y: auto;
+}
 
+
+/* main section of page; basic styling */
 .middle-page {
     flex: 1;
 
@@ -56,7 +98,6 @@ body {
     gap: 0px;
     height: 100%;
 }
-
 .main-section {
     flex: 1 1 auto;
     padding: 16px;
@@ -65,19 +106,19 @@ body {
     display: flex;
 }
 
+/* general styling for main section pages */
 .dashboard-content, .workouts-content, .profile-content {
     flex: 1;
     height: 100%;
+    width: 100%;
     display: flex;
-    gap: 16px;
+    gap: 20px;
     flex-direction: column;
-    background: var(--bg-dark); /* temporary */
-}
-.dashboard-content * {
-    border-radius: 10px;
+    background: var(--bg-dark);
 }
 
-.welcome {
+/* 'dashboard' related content*/
+.dashboard-header {
     flex: 1;
     width: 100%;
 
@@ -85,21 +126,68 @@ body {
     justify-content: center;
     align-items: center;
 }
-
-.upcoming-workouts {
+.upcoming-workouts-card, .recent-workouts-card {
     flex: 7;
-    background: var(--bg-regular);
-    border: 1px solid var(--bg-border);
-    padding: 8px;
+    max-width: 900px;
 }
 
-.recent-workouts {
-    flex: 7;
-    background: var(--bg-regular);
-    border: 1px solid var(--bg-border);
-    padding: 8px;
+/* 'workouts' related content */
+.workouts-header {
+    display: flex;
+    gap: 100px;
+    max-width: 100%;
+    align-items: center;
+}
+.create-workout-button {
+    margin-left: auto;
+    width: 160px;
+    height: 45px;
+    border-radius: 10px;
+    font-weight: 700;
+    border: 1px solid var(--primary-light);
+    box-shadow: 0 4px 20px var(--primary-vdark);
+
+    display: flex;
+    padding-left: 20px;
+    gap: 10px;
+    
+
+    background: var(--primary-regular);
+    color: var(--text-muted);
+}
+.create-workout-button:hover {
+    background: var(--primary-x);
+    color: var(--text-regular);
+}
+.upcoming-workouts-card .generic-table tbody td:nth-child(2) {
+    color: var(--text-dark);
+}
+.recent-workouts-card .generic-table tbody td:nth-child(2) {
+    color: var(--text-dark);
 }
 
+/* 'profile' related content */
+.profile-card {
+    max-width: 400px;
+}
+.profile-card .card-text span {
+    color: var(--text-regular);
+    font-weight: 600;
+}
+.profile-card ul {
+    list-style: none;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.profile-card ul li {
+    margin-bottom: 1.2rem;
+    border-bottom: 1px solid var(--bg-border);
+}
+.profile-card ul li:last-child {
+    border-bottom: 0px;
+}
+
+/* sidebar styling */
 .sidebar {
     flex: 0 0 clamp(145px, 16vw, 190px);
     max-width: 190px;
@@ -131,16 +219,31 @@ ul li:last-child {
     gap: 0.4em;
     position: sticky;
 }
-.sidebar-link.active{
+.sidebar-link:hover {
+    color: var(--text-light);
+    svg{
+        fill: var(--text-light);
+    }
+}
+.sidebar-link.active {
     color: var(--primary-regular);
-    /* background: var(--primary-bg); */
     font-weight: 600;
 
     svg{
         fill: var(--primary-regular);
     };
 }
+.sidebar-link.active:hover {
+    color: var(--primary-x);
+    font-weight: 600;
 
+    svg{
+        fill: var(--primary-x);
+    };
+}
+
+
+/* header styling */
 .header-section {
     height: 50px;
     border-bottom: 1px solid var(--bg-border);
@@ -153,12 +256,7 @@ ul li:last-child {
 h2 {
     font-size: clamp(24px, 50cqb, 28px);
 }
-
 h3 {
     font-size: 1.15em;
 }
 
-p.card-text {
-    color: var(--text-dark);
-    font-size: 0.85em;
-}
