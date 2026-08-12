@@ -28,3 +28,12 @@ Update 1:
 - Added tables to cards in 'Dashboard' page, and stylised it appropriately
 - Moved profile data into 'profileData.ts' and the profile card loads data from 'exampleUser' in this file
 - Created 'workoutData.ts'
+
+16th July 2026:
+- 
+
+12th August 2026:
+- Added a test 'edit profile' card to Profile.tsx, that will be used as a pop-up in future edits
+- Added 'useState()' to Profile.tsx, which lets the user edit input fields in the 'edit profile' card
+- Added new CSS to 'Update Profile' button, and input fields within the 'Edit Profile' card
+- Added use of 'localStorage' to 'Profile.tsx' so now the user can effectively edit their name, height, age, sex, and/or weight, and the 'User Profile' card will change correspondingly

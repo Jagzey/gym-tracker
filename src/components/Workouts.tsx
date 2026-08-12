@@ -1,9 +1,30 @@
+import { createdWorkouts } from '../data/workoutData'
+import type { Workout } from '../data/workoutData'
+
+type WorkoutProps = {
+    exampleWorkouts: Workout[];
+}
+
 const CreateWorkoutButton = () => {
     return (
         <button className="generic-button create-workout-button">
             <p>+</p> <p>Create Workout</p>
         </button>
     )
+}
+
+const CreatedWorkoutsList = ({ exampleWorkouts }: WorkoutProps) => {
+    return (
+        <>
+        {exampleWorkouts.map((workout: Workout) => (
+            <tr key={workout.id}>
+                <td>{workout.name}</td>
+                <td>{workout.date}</td>
+                <td>{workout.exercises.length}</td>
+            </tr>
+        ))}
+        </>
+    );
 }
 
 const WorkoutsCard = () => {
@@ -22,17 +43,7 @@ const WorkoutsCard = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Push</td>
-                                <td>N/A</td>
-                                <td>5</td>
-                            </tr>
-
-                            <tr>
-                                <td>Pull</td>
-                                <td>N/A</td>
-                                <td>4</td>
-                            </tr>
+                            <CreatedWorkoutsList exampleWorkouts={createdWorkouts}/>
                         </tbody>
                         
                     </table>

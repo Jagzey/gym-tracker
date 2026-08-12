@@ -1,3 +1,9 @@
+import { createdWorkouts, getBestWeight, type Workout } from '../data/workoutData'
+
+type WorkoutProps = {
+    exampleWorkouts: Workout[];
+}
+
 const UpcomingWorkouts = () => {
     return (
         <div className="generic-card upcoming-workouts-card">
@@ -14,29 +20,7 @@ const UpcomingWorkouts = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Push</td>
-                                <td>N/A</td>
-                                <td>5</td>
-                            </tr>
-
-                            <tr>
-                                <td>Pull</td>
-                                <td>N/A</td>
-                                <td>4</td>
-                            </tr>
-
-                            <tr>
-                                <td>Push</td>
-                                <td>N/A</td>
-                                <td>5</td>
-                            </tr>
-
-                            <tr>
-                                <td>Pull</td>
-                                <td>N/A</td>
-                                <td>4</td>
-                            </tr>
+                            <UpcomingWorkoutsList exampleWorkouts={createdWorkouts}/>
                         </tbody>
                         
                     </table>
@@ -45,6 +29,20 @@ const UpcomingWorkouts = () => {
         </div>
     )
 };
+
+const UpcomingWorkoutsList = ({ exampleWorkouts }: WorkoutProps) => {
+    return (
+        <>
+        {exampleWorkouts.map((workout: Workout) => (
+            <tr key={workout.id}>
+                <td>{workout.name}</td>
+                <td>{workout.date}</td>
+                <td>{workout.exercises.length}</td>
+            </tr>
+        ))}
+        </>
+    );
+}
 
 const RecentWorkouts = () => {
     return (
@@ -63,19 +61,7 @@ const RecentWorkouts = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Push</td>
-                                <td>N/A</td>
-                                <td>5</td>
-                                <td>110 kg</td>
-                            </tr>
-
-                            <tr>
-                                <td>Pull</td>
-                                <td>N/A</td>
-                                <td>4</td>
-                                <td>65kg</td>
-                            </tr>
+                            <RecentWorkoutsList exampleWorkouts={createdWorkouts} />
                         </tbody>
                         
                     </table>
@@ -86,6 +72,21 @@ const RecentWorkouts = () => {
         
     )
 };
+
+const RecentWorkoutsList = ({ exampleWorkouts }: WorkoutProps) => {
+    return (
+        <>
+        {exampleWorkouts.map((workout: Workout) => (
+            <tr key={workout.id}>
+                <td>{workout.name}</td>
+                <td>{workout.date}</td>
+                <td>{workout.exercises.length}</td>
+                <td>{getBestWeight(workout)}</td>
+            </tr>
+        ))}
+        </>
+    );
+}
 
 const Dashboard = () => {
     return (
