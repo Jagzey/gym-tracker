@@ -9,6 +9,7 @@ const currentUser: UserProfile = {
     height: "",
     weight: 0
 };
+
 type EditProfileCardProps = {
     closeCard: () => void;
 }

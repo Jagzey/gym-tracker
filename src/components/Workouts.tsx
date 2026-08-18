@@ -116,6 +116,7 @@ const CreatedWorkoutsCard = () => {
     const [isEditing, setIsEditing] = useState(false);
     const [selectedWorkout, setSelectedWorkout] = useState<Workout>(defaultWorkout);
 
+    setSelectedWorkout(defaultWorkout);
     return (
         <div className="generic-card workouts-card">
             <section>
