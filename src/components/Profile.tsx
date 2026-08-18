@@ -9,6 +9,12 @@ const currentUser: UserProfile = {
     height: "",
     weight: 0
 };
+type EditProfileCardProps = {
+    closeCard: () => void;
+}
+type EditProfileButtonProps = {
+    handleClick: () => void;
+}
 
 function addUserToLocalStorage() {
     if (localStorage.length != 0) {
@@ -65,13 +71,15 @@ const ProfileCard = () => {
     )
 };
 
-const EditProfileCard = () => {
+const EditProfileCard = ({ closeCard }: EditProfileCardProps) => {
 
     const [name, setName] = useState(currentUser.name);
     const [age, setAge] = useState(currentUser.age.toString());
     const [sex, setSex] = useState(currentUser.sex);
     const [height, setHeight] = useState(currentUser.height);
     const [weight, setWeight] = useState(currentUser.weight.toString());
+
+    
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -82,13 +90,18 @@ const EditProfileCard = () => {
         localStorage.setItem("height", height);
         localStorage.setItem("weight", weight);
         setCurrentUser();
+
+        closeCard();
     }
 
     return (
         <div className="generic-card profile-card">
             <section>
-                <h3>Edit User Profile</h3>
-
+                <div className="edit-profile-header">
+                    <h3>Edit User Profile</h3>
+                    <button onClick={closeCard} className="close-button">—</button>
+                </div>
+                
                 <form className="update-profile-form" onSubmit={handleSubmit}>
                     <ul>
                         <li className="name">
@@ -141,14 +154,14 @@ const EditProfileCard = () => {
     )
 };
 
-const CreateProfileButton = () => {
+ const EditProfileButton = ({ handleClick }: EditProfileButtonProps) => {
     return (
-        <button className="generic-button edit-profile-button">
+        <button onClick={handleClick} className="generic-button edit-profile-button">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg>
             <p>Edit Profile</p>
         </button>
     )
-}
+} 
 
 const setCurrentUser = () => {
     currentUser.name = localStorage.getItem("name") ?? "";
@@ -160,21 +173,28 @@ const setCurrentUser = () => {
 
 const Profile = () => {
     addUserToLocalStorage();
+    const [isEditing, setIsEditing] = useState(false);
 
     return (
         <div className="main-section">
             <main className="profile-content">
                 <div className="profile-header">
                     <h2>Profile</h2>
-                    <CreateProfileButton />
+                    <EditProfileButton handleClick={() => setIsEditing(true)} />
                 </div>
+
                 <div className="profile-body">
                     <ProfileCard />
-                    <EditProfileCard />
+                    {isEditing && 
+                    <div className="edit-profile-overlay">
+                        <EditProfileCard closeCard={() => setIsEditing(false)} />
+                    </div>}
                 </div>
             </main>
         </div>
     )
 };
+
+// <EditProfileCard /> 
 
 export default Profile;

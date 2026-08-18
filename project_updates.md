@@ -37,3 +37,6 @@ Update 1:
 - Added 'useState()' to Profile.tsx, which lets the user edit input fields in the 'edit profile' card
 - Added new CSS to 'Update Profile' button, and input fields within the 'Edit Profile' card
 - Added use of 'localStorage' to 'Profile.tsx' so now the user can effectively edit their name, height, age, sex, and/or weight, and the 'User Profile' card will change correspondingly
+
+18th August 2026:
+- Added a pop-up function to 'Edit User Profile', where the card pops up and when 'Update Profile' is pressed, the profile card automatically updates

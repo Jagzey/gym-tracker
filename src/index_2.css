@@ -6,6 +6,7 @@
     /* background colours */
     --bg-shadow: hsl(0, 0%, 2%);
     --bg-dark: hsl(0, 0%, 14%);
+    --bg-lightdark: hsl(0, 0%, 21%);
     --bg-regular: hsl(0, 0%, 24%);
     --bg-light: hsl(0, 0%, 34%);
     --bg-border: hsl(0, 0%, 44%);
@@ -92,16 +93,27 @@ p.card-text {
 
 /* generic input styling */
 .generic-input {
-    background: var(--bg-light);
+    background: var(--bg-lightdark);
     color: var(--text-dark);
     font-family: var(--font-main);
-    border: none;
+    border: 1px solid var(--bg-light);
     appearance: none;
     border-radius: 3px;
     padding: 3px;
 }
 
+/* generic button styling */
+.close-button {
+    border: none;
 
+    font-size: 18px;
+    color: var(--text-regular);
+    background-color: var(--bg-regular);
+}
+.close-button:hover {
+    font-weight: bold;
+    color: var(--primary-regular);
+}
 
 /* main section of page; basic styling */
 .middle-page {
@@ -151,6 +163,13 @@ p.card-text {
     max-width: 100%;
     align-items: center;
 }
+.create-workout-card-header {
+    display: flex;
+    align-items: center;
+    gap: 86px;
+    height: 20%;
+    padding: 0px 7px 0px;
+}
 .create-workout-button {
     margin-left: auto;
     width: 160px;
@@ -186,6 +205,13 @@ p.card-text {
     max-width: 100%;
     height: 20%;
     align-items: center;
+}
+.edit-profile-header {
+    display: flex;
+    align-items: center;
+    gap: 113px;
+    height: 20%;
+    padding: 0px 5px 0px;
 }
 .profile-body {
     display: flex;
@@ -240,6 +266,17 @@ p.card-text {
 .edit-profile-button:hover {
     background: var(--primary-x);
     color: var(--text-regular);
+}
+.edit-profile-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(4px);
 }
 .update-profile-form .card-text {
     display: flex;
