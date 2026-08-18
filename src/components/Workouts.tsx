@@ -9,6 +9,7 @@ const defaultWorkout: Workout = {
     exercises: [],
     completed: false
 };
+defaultWorkout.id = -1;
 
 type CreatedWorkoutProps = {
     exampleWorkouts: Workout[];
@@ -114,9 +115,8 @@ const EditWorkoutCard = ({ closeCard }: CreateWorkoutCardProps) => {
 
 const CreatedWorkoutsCard = () => {
     const [isEditing, setIsEditing] = useState(false);
-    const [selectedWorkout, setSelectedWorkout] = useState<Workout>(defaultWorkout);
+    
 
-    setSelectedWorkout(defaultWorkout);
     return (
         <div className="generic-card workouts-card">
             <section>
@@ -138,7 +138,7 @@ const CreatedWorkoutsCard = () => {
                     </table>
                 </div>
 
-                {isEditing && selectedWorkout.id >= 0 &&
+                {isEditing  &&
                 <div className="edit-profile-overlay">
                     <EditWorkoutCard closeCard={() => setIsEditing(false)} />
                 </div>
@@ -149,6 +149,7 @@ const CreatedWorkoutsCard = () => {
         
     )
 }
+// const [selectedWorkout, setSelectedWorkout] = useState<Workout>(defaultWorkout);
 
 const Workouts = () => {
     const [isCreating, setIsCreating] = useState(false);
