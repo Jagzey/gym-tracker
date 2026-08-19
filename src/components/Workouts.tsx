@@ -2,15 +2,8 @@ import { createdWorkouts } from '../data/workoutData'
 import type { Workout } from '../data/workoutData'
 import { useState } from 'react'
 
-const defaultWorkout: Workout = {
-    id: -1,
-    name: "",
-    date: "N/A",
-    exercises: [],
-    completed: false
-};
-defaultWorkout.id = -1;
 
+const currentWorkout: Workout = { ...createdWorkouts[0] };
 type CreatedWorkoutProps = {
     exampleWorkouts: Workout[];
     onClick: () => void;
@@ -24,6 +17,9 @@ type CreateWorkoutButtonProps = {
 type CreateWorkoutCardProps = {
     closeCard: () => void;
 }
+type SetCurrentWorkoutToLocalStorageProps = {
+    workout: Workout;
+}
 
 const CreateWorkoutButton = ({ handleClick }: CreateWorkoutButtonProps) => {
     return (
@@ -33,11 +29,36 @@ const CreateWorkoutButton = ({ handleClick }: CreateWorkoutButtonProps) => {
     )
 }
 
+const addCurrentWorkoutToLocalStorage = () => {
+    if (localStorage.getItem("currentWorkout") !== null) {
+        setCurrentWorkoutFromLocalStorage();
+    }
+    else {
+        localStorage.setItem("currentWorkout", JSON.stringify(currentWorkout))
+        setCurrentWorkoutFromLocalStorage();
+    }
+}
+
+const setCurrentWorkoutFromLocalStorage = () => {
+    let storedWorkout: Workout = JSON.parse(localStorage.getItem("currentWorkout") ?? "{}");
+    // if the user retrieved has valid attributes, we continue and set it
+    if (storedWorkout.name) {
+        Object.assign(currentWorkout, storedWorkout);
+    }
+}
+
+const handleWorkoutsTableClick = ({ workout }: SetCurrentWorkoutToLocalStorageProps) => {
+    localStorage.setItem("currentWorkout", JSON.stringify(workout));
+    Object.assign(currentWorkout, workout);
+}
+
 const CreatedWorkoutsList = ({ exampleWorkouts, onClick }: CreatedWorkoutProps) => {
     return (
         <>
         {exampleWorkouts.map((workout: Workout) => (
-            <tr onClick={() => {onClick}} key={workout.id}>
+            <tr onClick={() => {
+                handleWorkoutsTableClick({workout});
+                onClick();}} key={workout.id}>
                 <td>{workout.name}</td>
                 <td>{workout.date}</td>
                 <td>{workout.exercises.length}</td>
@@ -70,20 +91,20 @@ const EditWorkoutCard = ({ closeCard }: CreateWorkoutCardProps) => {
     }
 
     return (
-            <div className="generic-card edit-workout-card">
-                <div className="create-workout-card-header">
+            <div className="generic-card update-card">
+                <div className="edit-workout-card-header">
                     <h3>Edit Workout</h3>
                     <button onClick={closeCard} className="close-button">—</button>
                 </div>
 
                 
-                <form className="edit-workout-form" onSubmit={handleSubmit}>
+                <form className="update-form" onSubmit={handleSubmit}>
                     <ul>
                         <li className="name">
                             <p className="card-text">
                                 Name: 
                                 <span>
-                                    <input className="generic-input" name="workout-name" value={""} onChange={(e) => e}></input>
+                                    <input className="generic-input" name="workout-name" value={currentWorkout.name} onChange={(e) => e}></input>
                                 </span>
                             </p>
                         </li>
@@ -91,21 +112,13 @@ const EditWorkoutCard = ({ closeCard }: CreateWorkoutCardProps) => {
                             <p className="card-text">
                                 Date: 
                                 <span>
-                                    <input className="generic-input" name="workout-date" value={""} onChange={(e) => e}></input>
-                                </span>
-                            </p>
-                        </li>
-                        <li className="exercises">
-                            <p className="card-text">
-                                Total Exercises: 
-                                <span>
-                                    <input className="generic-input" name="profile-sex" value={0} onChange={(e) => e}></input>
+                                    <input className="generic-input" name="workout-date" value={currentWorkout.date} onChange={(e) => e}></input>
                                 </span>
                             </p>
                         </li>
                     </ul>
 
-                    <button className="update-workout-button" type="submit">Update Workout</button>
+                    <button className="update-button" type="submit">Update Workout</button>
                 </form>
                 
             </div>
@@ -118,7 +131,7 @@ const CreatedWorkoutsCard = () => {
     
 
     return (
-        <div className="generic-card workouts-card">
+        <div className="generic-card created-workouts-card">
             <section>
                 <h3>Created Workouts</h3>
 
@@ -132,13 +145,13 @@ const CreatedWorkoutsCard = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <CreatedWorkoutsList exampleWorkouts={createdWorkouts} onClick={() => setIsEditing(true)} />
+                            <CreatedWorkoutsList exampleWorkouts={createdWorkouts} onClick={() => { console.log("on click function runnning."); setIsEditing(true);  }} />
                         </tbody>
                         
                     </table>
                 </div>
 
-                {isEditing  &&
+                {isEditing &&
                 <div className="edit-profile-overlay">
                     <EditWorkoutCard closeCard={() => setIsEditing(false)} />
                 </div>
@@ -149,10 +162,11 @@ const CreatedWorkoutsCard = () => {
         
     )
 }
-// const [selectedWorkout, setSelectedWorkout] = useState<Workout>(defaultWorkout);
 
 const Workouts = () => {
     const [isCreating, setIsCreating] = useState(false);
+    addCurrentWorkoutToLocalStorage();
+    console.log(JSON.stringify(localStorage.getItem("currentWorkout")));
 
     return (
         <div className="main-section">

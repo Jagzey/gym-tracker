@@ -18,19 +18,11 @@ type EditProfileButtonProps = {
 }
 
 function addUserToLocalStorage() {
-    if (localStorage.length != 0) {
+    if (localStorage.getItem('user') !== null) {
         setCurrentUser();
-
-        return;
     }
     else {
-
-        localStorage.setItem("name", exampleUser.name);
-        localStorage.setItem("age", exampleUser.age.toString());
-        localStorage.setItem("sex", exampleUser.sex);
-        localStorage.setItem("height", exampleUser.height);
-        localStorage.setItem("weight", exampleUser.weight.toString());
-
+        localStorage.setItem("user", JSON.stringify(exampleUser));
         setCurrentUser();
     }
 }
@@ -85,13 +77,15 @@ const EditProfileCard = ({ closeCard }: EditProfileCardProps) => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        localStorage.setItem("name", name);
-        localStorage.setItem("age", age);
-        localStorage.setItem("sex", sex);
-        localStorage.setItem("height", height);
-        localStorage.setItem("weight", weight);
+        let editedUser: UserProfile = {
+            name: name,
+            age: Number(age),
+            sex: sex,
+            height: height,
+            weight: Number(weight)
+        }
+        localStorage.setItem("user", JSON.stringify(editedUser));
         setCurrentUser();
-
         closeCard();
     }
 
@@ -103,7 +97,7 @@ const EditProfileCard = ({ closeCard }: EditProfileCardProps) => {
                     <button onClick={closeCard} className="close-button">—</button>
                 </div>
                 
-                <form className="update-profile-form" onSubmit={handleSubmit}>
+                <form className="update-form" onSubmit={handleSubmit}>
                     <ul>
                         <li className="name">
                             <p className="card-text">
@@ -147,7 +141,7 @@ const EditProfileCard = ({ closeCard }: EditProfileCardProps) => {
                         </li>
                     </ul>
 
-                    <button className="update-profile-button" type="submit">Update Profile</button>
+                    <button className="update-button" type="submit">Update Profile</button>
                 </form>
                 
             </section>
@@ -165,11 +159,11 @@ const EditProfileCard = ({ closeCard }: EditProfileCardProps) => {
 } 
 
 const setCurrentUser = () => {
-    currentUser.name = localStorage.getItem("name") ?? "";
-    currentUser.age = Number(localStorage.getItem("age")?.toString() ?? "");
-    currentUser.sex = localStorage.getItem("sex") ?? "";
-    currentUser.height = localStorage.getItem("height") ?? "";
-    currentUser.weight = Number(localStorage.getItem("weight") ?? "");
+    let storedUser: UserProfile = JSON.parse(localStorage.getItem("user") ?? "{}");
+    // if the user retrieved has valid attributes, we continue and set it
+    if (storedUser.name) {
+        Object.assign(currentUser, storedUser);
+    }
 }
 
 const Profile = () => {

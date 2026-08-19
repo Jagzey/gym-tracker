@@ -114,6 +114,24 @@ p.card-text {
     font-weight: bold;
     color: var(--primary-regular);
 }
+.update-button {
+    border-radius: 3px;
+    font-weight: 700;
+    border: 1px solid var(--primary-light);
+    box-shadow: 0 4px 20px var(--primary-vdark);
+
+    display: flex;
+    margin-left: 18px;
+    padding: 4px 16px 4px 8px;
+    gap: 10px;
+    
+
+    background: var(--primary-regular);
+    color: var(--text-muted);
+}
+.update-button:hover {
+    background: var(--primary-x);
+}
 
 /* main section of page; basic styling */
 .middle-page {
@@ -170,6 +188,12 @@ p.card-text {
     height: 20%;
     padding: 0px 7px 0px;
 }
+.edit-workout-card-header {
+    display: flex;
+    align-items: center;
+    gap: 173px;
+    padding: 0px 7px 0px;
+}
 .create-workout-button {
     margin-left: auto;
     width: 160px;
@@ -197,6 +221,9 @@ p.card-text {
 .recent-workouts-card .generic-table tbody td:nth-child(2) {
     color: var(--text-dark);
 }
+.created-workouts-card .generic-table tbody td:nth-child(2) {
+    color: var(--text-dark);
+}
 
 /* 'profile' related content */
 .profile-header {
@@ -222,14 +249,6 @@ p.card-text {
 .profile-card {
     max-width: 300px;
 }
-.profile-card .card-text {
-    display: flex;
-}
-.profile-card .card-text span {
-    color: var(--text-regular);
-    font-weight: 600;
-    margin-left: auto;
-}
 .profile-card ul {
     list-style: none;
     padding-left: 20px;
@@ -241,6 +260,14 @@ p.card-text {
 }
 .profile-card ul li:last-child {
     border-bottom: 0px;
+}
+.profile-card .card-text {
+    display: flex;
+}
+.profile-card .card-text span {
+    color: var(--text-regular);
+    font-weight: 600;
+    margin-left: auto;
 }
 .edit-profile-button {
     margin-left: auto;
@@ -278,26 +305,11 @@ p.card-text {
     background-color: rgba(0, 0, 0, 0.45);
     backdrop-filter: blur(4px);
 }
-.update-profile-form .card-text {
+.update-form .card-text {
     display: flex;
     gap: 4px;
     flex-direction: row;
     align-items: center;
-}
-.update-profile-button {
-    border-radius: 3px;
-    font-weight: 700;
-    border: 1px solid var(--primary-light);
-    box-shadow: 0 4px 20px var(--primary-vdark);
-
-    display: flex;
-    margin-left: 18px;
-    padding: 4px 16px 4px 8px;
-    gap: 10px;
-    
-
-    background: var(--primary-regular);
-    color: var(--text-muted);
 }
 .update-profile-button:hover {
     background: var(--primary-x);

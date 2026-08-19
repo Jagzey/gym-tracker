@@ -40,3 +40,9 @@ Update 1:
 
 18th August 2026:
 - Added a pop-up function to 'Edit User Profile', where the card pops up and when 'Update Profile' is pressed, the profile card automatically updates
+- Edit User Profile pop-up complete, and CSS added
+- Create Workout pop-up added, although missing CSS and input fields.
+
+19th August 2026:
+- Replaced localStorage usage by parsing an 'User' object, instead of individually storing it's attributes
+- Added localStorage usage to 'Workouts.tsx' so incomplete editing of workouts now works, and CSS has been assigned to new 'Edit Workout' card
